@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io();
+            socket.on('line', function (line) {
+                $( "body" ).append(
+                        "<span id='agent' name='agent'>"
+                                + line.client
+                        + "</span><span id='datetime' name='datetime'>"
+                                + line.datetime
+                        + "</span><span id='file' name='file'>"
+                                + line.file
+                        + '</span><span id="data" name="data">'
+                                + line.data
+                        + '</span><br/>'
+                );
+
+                $(window).scrollTop($(document).height());
+            });
+        </script>
+        <style>
+            body {
+                padding: 0px;
+                margin: 0px;
+                font-family: monospace;
+                background-color: black;
+                font-size: 12px;
+            }
+            #file {
+                color: lightgreen;
+                padding-left: 5px;
+            }
+            #data {
+                color: white;
+                padding-left: 5px;
+            }
+            #datetime {
+                color: white;
+                padding-left: 5px;
+            }
+            #agent {
+                color: lightgreen;
+                padding-left: 5px;
+            }
+        </style>
+    </head>
+    <body>
+
+    </body>
+</html>

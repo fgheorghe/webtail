@@ -1,0 +1,10 @@
+{
+	"name": "webtail-server",
+	"dependencies": {
+		"express": "",
+		"body-parser": "",
+		"socket.io": "",
+        "ini": "",
+        "url": ""
+	}
+}

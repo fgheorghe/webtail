@@ -1,0 +1,9 @@
+{
+	"name": "webtail-agent",
+	"dependencies": {
+		"tail": "",
+        "ini": "",
+        "request": "",
+        "moment": ""
+	}
+}
