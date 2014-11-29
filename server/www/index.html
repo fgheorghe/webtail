@@ -3,17 +3,22 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script>
+            // Tiny function used for encoding HTML strings.
+            // Based on: http://css-tricks.com/snippets/javascript/htmlentities-for-javascript/
+            function htmlEncode(string) {
+                return String(string).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            }
             var socket = io();
             socket.on('line', function (line) {
                 $( "body" ).append(
                         "<span id='agent' name='agent'>"
-                                + line.client
+                                + htmlEncode(line.client)
                         + "</span><span id='datetime' name='datetime'>"
-                                + line.datetime
+                                + htmlEncode(line.datetime)
                         + "</span><span id='file' name='file'>"
-                                + line.file
+                                + htmlEncode(line.file)
                         + '</span><span id="data" name="data">'
-                                + line.data
+                                + htmlEncode(line.data)
                         + '</span><br/>'
                 );
 

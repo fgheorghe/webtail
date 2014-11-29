@@ -49,6 +49,8 @@ First version of Webtail authenticates users and agents using a configurable tok
 security mechanism is not reliable, however, placing the server behind an apache proxy and
 configuring basic authentication would help.
 
+Tail content is sent to browsers as is, thus it must be HTML escaped.
+
 Dependencies
 ============
 
