@@ -26,18 +26,20 @@ NOTE: Token value must match token value configured for the agent server.
 
 Once the agent is configured, change directory to agent/ and issue:
 npm install
+npm install -g forever
 
 To start the agent in the background, issue:
-nohup nodejs agent.js > agent.log &
+npm start
 
 Clone this repository on a central server used for capturing tail content, and displaying it to
 end used. Edit server/configuration.ini. Change values to suit your needs.
 
 Once the server is configured, change directory to server/ and issue:
 npm install
+npm install -g forever
 
 To start the agent in the background, issue:
-nohup nodejs server.js > server.log &
+npm start
 
 Browse with as many clients as you wish to:
 http://yourserver:port/?token=CONFIGUREDACCESSTOKEN
