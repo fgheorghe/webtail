@@ -1,4 +1,5 @@
 {
+        "scripts": {"start": "forever start server.js", "stop": "forever stop server.js"},
 	"name": "webtail-server",
 	"dependencies": {
 		"express": "",

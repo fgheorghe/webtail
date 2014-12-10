@@ -1,4 +1,5 @@
 {
+	"scripts": {"start": "forever start agent.js", "stop": "forever stop agent.js"},
 	"name": "webtail-agent",
 	"dependencies": {
 		"tail": "",
