@@ -51,7 +51,14 @@ WebTailServer.prototype.init = function () {
     this.plugins = {};
 
     // Stores which events should be handled by plugins.
-    this.pluginEventMap = {};
+    this.pluginEventMap = {
+        // Agent specific events.
+        agent: {
+            // A new line has been received from agent.
+            // Handling function should take in the full POST request object.
+            onLine: undefined
+        }
+    };
 
     // Load configuration.
     this.readConfiguration();
@@ -68,7 +75,7 @@ WebTailServer.prototype.init = function () {
 
 // Loads plugins configured in configuration section [plugins].
 WebTailServer.prototype.loadPlugins = function() {
-    var plugins = [], i;
+    var plugins = [], i, eventName;
 
     if (this.config.plugins
         && this.config.plugins.plugin.length !== 0) {
@@ -78,6 +85,15 @@ WebTailServer.prototype.loadPlugins = function() {
         for (i = 0; i < plugins.length; i++) {
             console.log("Plugin: " + plugins[i]);
             this.plugins[plugins[i]] = require('./plugins/' + plugins[i] + '/module.js');
+
+            // Map event handlers.
+            for (eventName in this.pluginEventMap.agent) {
+                if (typeof this.plugins[plugins[i]].agent !== "undefined"
+                    && typeof this.plugins[plugins[i]].agent[eventName] !== "undefined") {
+                    // 'Register' event handler.
+                    this.pluginEventMap.agent[eventName] = this.plugins[plugins[i]].agent[eventName];
+                }
+            }
         }
 
         console.log("Done loading plugins.");
@@ -159,6 +175,12 @@ WebTailServer.prototype.createAgentWebServer = function () {
             // Send an INVALID message.
             res.status(500).send("INVALID");
         } else {
+            // Check if a plugin should be notified about incoming agent line data.
+            if (typeof this.pluginEventMap.agent.onLine !== "undefined") {
+                // Let the plugin event handler...handle data as it wants to.
+                this.pluginEventMap.agent.onLine(req);
+            }
+
             // Emit 'line' to all sockets.
             this.io.sockets.emit('line', {
                 client: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
