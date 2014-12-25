@@ -84,7 +84,9 @@ WebTailServer.prototype.loadPlugins = function() {
         plugins = this.config.plugins.plugin;
         for (i = 0; i < plugins.length; i++) {
             console.log("Plugin: " + plugins[i]);
-            this.plugins[plugins[i]] = require('./plugins/' + plugins[i] + '/module.js');
+            // Load plugin and pass in 'this' so that an instance of the server is available for the plugin to use.
+            // Typically, the plugin will access server configuration.
+            this.plugins[plugins[i]] = require('./plugins/' + plugins[i] + '/module.js')(this);
 
             // Map event handlers.
             for (eventName in this.pluginEventMap.agent) {
