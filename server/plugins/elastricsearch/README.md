@@ -7,4 +7,11 @@ plugin[] = 'elastricsearch'
 This module expects the following configuration values to be made available:
 
 [elasticsearch]
-TODO: Add documentation.
+
+Configuration keys are passed in to elasticsearch's module Client function. As such, configuration values
+should be made of parameters for this function as documented here:
+http://www.elasticsearch.org/guide/en/elasticsearch/client/javascript-api/current/configuration.html
+
+Update your package.json file, and add the following dependency:
+
+"elasticsearch": ""

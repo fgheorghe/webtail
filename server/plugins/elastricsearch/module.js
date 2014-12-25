@@ -1,3 +1,11 @@
+// Prepare dependencies.
+var elasticsearch = require('elasticsearch');
+
+// Stores configuration, passed on to the Client method of the elasticsearch module.
+// Expected values are as per:
+// http://www.elasticsearch.org/guide/en/elasticsearch/client/javascript-api/current/configuration.html
+var config;
+
 // Stores an instance of the server.
 var serverInstance;
 
@@ -8,6 +16,7 @@ function loadModuleConfiguration() {
         console.log("Can not load 'elasticsearch' plugin configuration. Process terminated.");
         process.exit(1);
     }
+    config = serverInstance.config.elasticsearch;
 }
 
 // Instantiates the module.

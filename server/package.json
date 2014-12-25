@@ -9,6 +9,7 @@
         "body-parser": "",
         "socket.io": "",
         "ini": "",
-        "url": ""
+        "url": "",
+        "elasticsearch": ""
     }
 }
