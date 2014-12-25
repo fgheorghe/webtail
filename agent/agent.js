@@ -125,5 +125,14 @@ WebTailAgent.prototype.readConfiguration = function() {
     }
 }
 
+// Default configuration file path.
+var configurationFilePath = "configuration.ini";
+
+// Check if a command line configuration file path is used.
+if (process.argv.length === 3) {
+    // If so, overwrite the default configuration file path.
+    configurationFilePath = process.argv[2];
+}
+
 // Start the application.
-new WebTailAgent("configuration.ini");
+new WebTailAgent(configurationFilePath);

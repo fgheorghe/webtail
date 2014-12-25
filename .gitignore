@@ -1,0 +1,5 @@
+.idea
+agent/node_modules
+agent/npm-debug.log
+server/node_modules
+server/npm-debug.log
