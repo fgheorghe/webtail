@@ -31,6 +31,9 @@ npm install -g forever
 To start the agent in the background, issue:
 npm start
 
+To start the agent with an optional configuration file path, use:
+nodejs agent.js /path/to/configuration.ini
+
 Clone this repository on a central server used for capturing tail content, and displaying it to
 end used. Edit server/configuration.ini. Change values to suit your needs.
 
@@ -40,6 +43,9 @@ npm install -g forever
 
 To start the agent in the background, issue:
 npm start
+
+To start the server with an optional configuration file path, use:
+nodejs agent.js /path/to/configuration.ini
 
 Browse with as many clients as you wish to:
 http://yourserver:port/?token=CONFIGUREDACCESSTOKEN

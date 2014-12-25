@@ -1,10 +1,13 @@
 {
-	"scripts": {"start": "forever start agent.js", "stop": "forever stop agent.js"},
-	"name": "webtail-agent",
-	"dependencies": {
-		"tail": "",
+    "scripts": {
+        "start": "forever start agent.js",
+        "stop": "forever stop agent.js"
+    },
+    "name": "webtail-agent",
+    "dependencies": {
+        "tail": "",
         "ini": "",
         "request": "",
         "moment": ""
-	}
+    }
 }
