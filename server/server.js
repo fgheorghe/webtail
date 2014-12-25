@@ -47,14 +47,41 @@ WebTailServer.prototype.init = function () {
         url: require('url')
     };
 
+    // Stores plugins.
+    this.plugins = {};
+
+    // Stores which events should be handled by plugins.
+    this.pluginEventMap = {};
+
     // Load configuration.
     this.readConfiguration();
+
+    // Load plugins.
+    this.loadPlugins();
 
     // Create the agent HTTP server, including socket.io.
     this.createAgentWebServer();
 
     // Create the socket.io HTTP server.
     this.createClientWebServer();
+}
+
+// Loads plugins configured in configuration section [plugins].
+WebTailServer.prototype.loadPlugins = function() {
+    var plugins = [], i;
+
+    if (this.config.plugins
+        && this.config.plugins.plugin.length !== 0) {
+        console.log("Loading plugins:");
+
+        plugins = this.config.plugins.plugin;
+        for (i = 0; i < plugins.length; i++) {
+            console.log("Plugin: " + plugins[i]);
+            this.plugins[plugins[i]] = require('./plugins/' + plugins[i] + '/module.js');
+        }
+
+        console.log("Done loading plugins.");
+    }
 }
 
 // Handles a new socket connection.
