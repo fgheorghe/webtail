@@ -6,6 +6,9 @@ var elasticsearch = require('elasticsearch');
 // http://www.elasticsearch.org/guide/en/elasticsearch/client/javascript-api/current/configuration.html
 var config;
 
+// Stores the client.
+var client;
+
 // Stores an instance of the server.
 var serverInstance;
 
@@ -19,6 +22,11 @@ function loadModuleConfiguration() {
     config = serverInstance.config.elasticsearch;
 }
 
+// Creates an elastic search client.
+function createClient() {
+    client = new elasticsearch.Client(config);
+}
+
 // Instantiates the module.
 module.exports = function(server) {
     // Store the server instance.
@@ -26,6 +34,9 @@ module.exports = function(server) {
 
     // Initialise plugin.
     loadModuleConfiguration();
+
+    // ...and create the client.
+    createClient();
 
     // Return event handlers.
     return {

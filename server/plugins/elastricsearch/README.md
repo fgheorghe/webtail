@@ -15,3 +15,6 @@ http://www.elasticsearch.org/guide/en/elasticsearch/client/javascript-api/curren
 Update your package.json file, and add the following dependency:
 
 "elasticsearch": ""
+
+For instructions on how to install elastic search, see:
+http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/setup-repositories.html
